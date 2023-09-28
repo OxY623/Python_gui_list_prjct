@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список задач</title>
+</head>
+<body>
+<h1>Daily Tasks</h1>
+
+<form method="post" action="{% url 'add_item' %}">
+    {% csrf_token %}
+    <input type="text" name="title" required>
+    <button type="submit">Add</button>
+</form>
+
+<ul>
+    {% for item in items %}
+    <li>
+        {{ item.title }}
+        <a href="{% url 'delete_item' item.id %}">Удалить</a>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
